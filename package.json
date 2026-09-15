@@ -1,0 +1,27 @@
+{
+  "name": "tarea-1-bases-de-datos-2",
+  "version": "1.0.0",
+  "description": "- Angelo Piedra Castro 2024101262",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StevenXoFk/Tarea-1-Bases-de-Datos-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/StevenXoFk/Tarea-1-Bases-de-Datos-2/issues"
+  },
+  "homepage": "https://github.com/StevenXoFk/Tarea-1-Bases-de-Datos-2#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mssql": "^12.7.2"
+  }
+}
