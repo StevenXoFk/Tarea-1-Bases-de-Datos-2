@@ -24,7 +24,7 @@ router.get("/with-category", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-        const { name, productNumber, color, standardCost, listPrice, subcategoryID } = req.body;
+        const { name, productNumber, color, standardCost, listPrice, subcategoryID, ProductSubcategoryID } = req.body;
         const pool = await poolPromise;
         const result = await pool.request()
             .input("Name", sql.NVarChar, name)
@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
             .input("Color", sql.NVarChar, color || null)
             .input("StandardCost", sql.Decimal(18, 2), standardCost)
             .input("ListPrice", sql.Decimal(18, 2), listPrice)
-            .input("ProductSubcategoryID", sql.Int, subcategoryID || null)
+            .input("ProductSubcategoryID", sql.Int, subcategoryID ?? ProductSubcategoryID ?? null)
             .execute("sp_InsertProduct");
         res.json({ message: "Producto insertado correctamente", productId: result.recordset[0].NewProductID });
     } catch (err) {
@@ -42,15 +42,16 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     try {
-        const { productId, name, color, standardCost, listPrice, subcategoryID } = req.body;
+        const { productId, name, color, standardCost, productNumber, listPrice, subcategoryID, ProductSubcategoryID } = req.body;
         const pool = await poolPromise;
         const result = await pool.request()
             .input("ProductID", sql.Int, req.params.id)
             .input("Name", sql.NVarChar(50), name)
             .input("Color", sql.NVarChar(15), color || null)
             .input("StandardCost", sql.Decimal(18, 2), standardCost)
+            .input("ProductNumber", sql.NVarChar(25), productNumber)
             .input("ListPrice", sql.Decimal(18, 2), listPrice)
-            .input("ProductSubcategoryID", sql.Int, subcategoryID || null)
+            .input("ProductSubcategoryID", sql.Int, subcategoryID ?? ProductSubcategoryID ?? null)
             .execute("sp_UpdateProduct");
         res.json({ message: "Producto actualizado correctamente" });
     } catch (err) {

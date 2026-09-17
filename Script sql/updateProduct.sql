@@ -3,6 +3,7 @@ CREATE PROCEDURE sp_UpdateProduct
     @Name NVARCHAR(50),
     @Color NVARCHAR(15) = NULL,
     @StandardCost MONEY,
+    @ProductNumber NVARCHAR(25),
     @ListPrice MONEY,
     @ProductSubcategoryID INT = NULL
 AS
@@ -11,6 +12,7 @@ BEGIN
     SET Name = @Name,
         Color = @Color,
         StandardCost = @StandardCost,
+        ProductNumber = @ProductNumber,
         ListPrice = @ListPrice,
         ProductSubcategoryID = @ProductSubcategoryID,
         ModifiedDate = GETDATE()
